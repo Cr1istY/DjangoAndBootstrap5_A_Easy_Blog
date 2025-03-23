@@ -1,0 +1,83 @@
+{% extends 'base/base.html' %}
+{% block title %}{{ blog.title }}{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'highlightjs/styles/github.css' %}">
+    <script src="{% static 'highlightjs/highlight.min.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="container bg-white p-5 rounded">
+        <div class="row">
+            <h1 class="fs-2 col-9">{{ blog.title }}</h1>
+            <div class="d-flex flex-wrap align-items-center justify-content-end col-3">
+                <div class="d-flex flex-wrap align-items-center justify-content-start col-12">
+                    <span>发布于</span>
+                    <div>
+                        {{ blog.pub_date|date:"Y年m月d日 h时i分" }}
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap align-items-center justify-content-start col-12">
+                    <span>作者 </span>
+                    <div>
+                        <a href="#" class="text-decoration-none text-dark">
+                            {{ blog.author.username }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="p-2">
+            {{ blog.content|safe }}
+        </div>
+
+        <hr>
+
+        <div class="mt-2">
+            <h3>评论（{{ blog.comments.all|length }}）</h3>
+            <form action="{% url 'blog:pub_comment' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="blog_id" value="{{ blog.id }}">
+                <div class="mt-2">
+                    <input type="text" class="form-control" placeholder="请输入评论" name="content">
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary mt-3">评论</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="mt-2">
+            <ul class="list-group list-group-flush">
+                {% for comment in blog.comments.all %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="user-info fs-6 text-decoration-none text-dark text-body-secondary">
+                                <img src="{% static 'pic/PIA14935~orig.jpg' %}" alt="" class="rounded-circle"
+                                     style="width: 40px; height: 40px;">
+                                <span class="ms-2">
+                            {{ comment.author.username }}
+                        </span>
+                            </a>
+                            <div class="creat-time" style="line-height : 40px;">
+                                {{ comment.pub_date|date:"Y年m月d日 h时i分" }}
+                            </div>
+                        </div>
+                        <div class="content fs-6 mt-2">
+                            {{ comment.content }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        hljs.highlightAll();
+    </script>
+{% endblock %}
+

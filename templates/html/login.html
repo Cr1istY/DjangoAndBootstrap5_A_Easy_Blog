@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css_myself/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css_myself/signin.css' %}">
+</head>
+
+<body>
+<main class="form-signin">
+    <form action="" method="post">
+    {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal text-center">登录</h1>
+
+        <div class="form-floating">
+            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">邮箱</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">密码</label>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="remember" value="true">记住我
+            </label>
+        </div>
+        <div class="d-flex justify-content-between">
+            {% if form %}
+                <script>
+                    alert('邮箱或密码错误')
+                </script>
+            {% endif %}
+            <button class="me-2 w-100 btn btn-lg btn-primary" type="submit">登录</button>
+            <a href="#" class="ms-2 w-100 btn btn-lg btn-primary">注册</a>
+        </div>
+
+
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2025-2099</p>
+    </form>
+</main>
+
+
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>
