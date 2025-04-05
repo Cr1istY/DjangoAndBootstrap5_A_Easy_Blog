@@ -1,0 +1,57 @@
+.book {
+
+    width: 200px;
+    height: 300px;
+    background-color: red;
+    transform: rotate(-37deg) skewX(19deg);
+    position: relative;
+    box-shadow: -35px 35px 50px #888888;
+    transition: 0.5s;
+}
+
+.book::before {
+    transform: skewY(-45deg) translate(-30px, -15px);
+    content: "";
+    height: 100%;
+    width: 30px;
+    background-color: blue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("img.png");
+    background-size: cover;
+}
+
+.book::after {
+    transform: skewX(-45deg) translate(15px, 30px);
+    content: "";
+    height: 30px;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-image: url("img.png");
+    background-size: cover;
+    background-position: bottom;
+}
+
+.book:hover  {
+    box-shadow: -55px 50px 50px #888888;
+}
+
+.book .cover {
+    width: 100%;
+    height: 100%;
+    background-image: url("img.png");
+    background-size: cover;
+}
+
+.carousel-inner {
+    box-shadow: 30px 35px 50px #888888;
+    transition: 0.5s;
+}
+
+.carousel-inner:hover {
+    box-shadow: 40px 45px 50px #888888;
+}

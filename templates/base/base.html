@@ -23,24 +23,22 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0 text-decoration-none">
-                <li><a href="/" class="nav-link pe-0">主页</a></li>
-                <li><a href="#" class="nav-link pe-0">留言板</a></li>
+                <li><a href="{% url 'aboutMe:Me' %}" class="nav-link pe-0">主页</a></li>
                 <li><a href="{% url 'blog:blog_publish' %}" class="nav-link pe-0">发表想法</a></li>
                 <li><a href="#" class="nav-link pe-0">关于我</a></li>
             </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'blog:search' %}" method="GET">
-                <input type="search" name="q" class="form-control form-control-dark" placeholder="搜索..." aria-label="Search">
+                <input type="search" name="q" class="form-control form-control-dark" placeholder="搜索..."
+                       aria-label="Search">
             </form>
 
             {% if user.is_authenticated %}
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{% static 'pic/PIA14935~orig.jpg' %}" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <strong>{% if user.is_authenticated %}{{ user.username }}{% else %}未登录{% endif %}</strong>
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">个人主页</a></li>
-                        <li><a class="dropdown-item" href="#">我的博客</a></li>
                         <li><a class="dropdown-item" href="#">每日推荐</a></li>
                         <li>
                             <hr class="dropdown-divider">

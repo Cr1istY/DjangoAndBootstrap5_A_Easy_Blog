@@ -3,31 +3,87 @@
 
 {% block content %}
     <section>
-        <div class="container">
-            <div class="p-4 p-md-5 mb-4 text-white bg-dark">
-                <div class="col-md-6 px-0">
-                    <h3 class="display-4 fst-italic">精选内容</h3>
-                    <p class="lead my-3">这些是我的精选分享。</p>
-                    <p class="lead mb-0"><a href="#" class="text-white fw-bold">查看更多...</a></p>
-                </div>
-            </div>
-
-
+        <div class="container-fluid">
             <div class="row">
-                {% for blog in blogs %}
-                    <div class="col-md-6">
-                        <div class="g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-primary">{{ blog.category }}</strong>
-                                <h3 class="mb-0">{{ blog.title }}</h3>
-                                <div class="mb-1 text-muted">{{ blog.pub_date|date:"m月d日" }}</div>
-                                <p class="card-text mb-auto">{{ blog.content|striptags|truncatechars:50 }}</p>
-                                <a href="{% url 'blog:blog_detail' blog_id=blog.id %}"
-                                   class="stretched-link">点击阅读...</a>
+                <div class="d-none d-lg-flex col-lg-3 flex-column flex-shrink-0 p-3 bg-body-tertiary vh-100 sticky-top"
+                     style="width: 280px;">
+                    <a href="/"
+                       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                        <span class="fs-4">更多</span>
+                    </a>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="{% url 'aboutMe:Me' %}" class="nav-link link-body-emphasis" aria-current="page">
+                                首页
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link active">
+                                博客
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link link-body-emphasis">
+                                阅读
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link link-body-emphasis">
+                                宇宙
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link link-body-emphasis">
+                                专辑
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="dropdown">
+                        {% if user.is_authenticated %}
+                            <a href="#"
+                               class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <strong>{% if user.is_authenticated %}{{ user.username }}{% else %}未登录{% endif %}</strong>
+                            </a>
+                            <ul class="dropdown-menu text-small shadow">
+                                <li><a class="dropdown-item" href="#">每日推荐</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">退出登录</a></li>
+                            </ul>
+                        {% else %}
+                            <ul class="dropdown-menu text-small shadow">
+                                <li><a class="dropdown-item" href="{% url 'blauth:bllogin' %}">登录</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'blauth:register' %}">注册</a></li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-8 col-12 p-0 ms-2 mt-2">
+                    {% for blog in blogs %}
+                        <div class="col-12">
+                            <div class="g-0 border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative bg-light">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <h3 class="mb-0">{{ blog.title }}</h3>
+                                    <div class="mb-1 text-muted">{{ blog.pub_date|date:"m月d日" }}</div>
+                                    <p class="card-text mb-auto">{{ blog.content|striptags|truncatechars:50 }}</p>
+                                    <strong class="d-inline-block mb-2 text-primary">#{{ blog.category.name }}</strong>
+                                    <a href="{% url 'blog:blog_detail' blog_id=blog.id %}"
+                                       class="stretched-link"></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+                <div class="col-auto">
+
+                </div>
             </div>
         </div>
 

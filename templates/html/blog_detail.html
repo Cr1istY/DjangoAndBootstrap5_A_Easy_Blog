@@ -3,6 +3,22 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'highlightjs/styles/github.css' %}">
     <script src="{% static 'highlightjs/highlight.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'markdown/node_modules/github-markdown-css/github-markdown.css' %}">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
 {% endblock %}
 {% block content %}
     <div class="container bg-white p-5 rounded">
@@ -10,13 +26,11 @@
             <h1 class="fs-2 col-9">{{ blog.title }}</h1>
             <div class="d-flex flex-wrap align-items-center justify-content-end col-3">
                 <div class="d-flex flex-wrap align-items-center justify-content-start col-12">
-                    <span>发布于</span>
                     <div>
                         {{ blog.pub_date|date:"Y年m月d日 h时i分" }}
                     </div>
                 </div>
                 <div class="d-flex flex-wrap align-items-center justify-content-start col-12">
-                    <span>作者 </span>
                     <div>
                         <a href="#" class="text-decoration-none text-dark">
                             {{ blog.author.username }}
@@ -28,8 +42,8 @@
 
         <hr>
 
-        <div class="p-2">
-            {{ blog.content|safe }}
+        <div class="p-2 markdown-body">
+                {{ blog.content|safe }}
         </div>
 
         <hr>
