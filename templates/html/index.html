@@ -14,52 +14,58 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active" aria-current="page">
+                            <a href="{% url 'aboutMe:Me' %}" class="nav-link link-body-emphasis" aria-current="page">
                                 首页
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link link-body-emphasis">
+                            <a href="#" class="nav-link active">
                                 博客
                             </a>
                         </li>
                         <li>
                             <a href="#" class="nav-link link-body-emphasis">
-                                图片
+                                阅读
                             </a>
                         </li>
                         <li>
                             <a href="#" class="nav-link link-body-emphasis">
-                                视频
+                                宇宙
                             </a>
                         </li>
                         <li>
                             <a href="#" class="nav-link link-body-emphasis">
-                                音乐
+                                专辑
                             </a>
                         </li>
                     </ul>
                     <hr>
                     <div class="dropdown">
-                        <a href="#"
-                           class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{% static 'pic/PIA14935~orig.jpg' %}" alt="" width="32" height="32"
-                                 class="rounded-circle me-2">
-                            <strong>Cr1styang</strong>
-                        </a>
-                        <ul class="dropdown-menu text-small shadow">
-                            <li><a class="dropdown-item" href="#">个人主页</a></li>
-                            <li><a class="dropdown-item" href="#">我的博客</a></li>
-                            <li><a class="dropdown-item" href="#">每日推荐</a></li>
-                            <li>stretched-link
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">退出登录</a></li>
-                        </ul>
+                        {% if user.is_authenticated %}
+                            <a href="#"
+                               class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <strong>{% if user.is_authenticated %}{{ user.username }}{% else %}未登录{% endif %}</strong>
+                            </a>
+                            <ul class="dropdown-menu text-small shadow">
+                                <li><a class="dropdown-item" href="#">每日推荐</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">退出登录</a></li>
+                            </ul>
+                        {% else %}
+                            <ul class="dropdown-menu text-small shadow">
+                                <li><a class="dropdown-item" href="{% url 'blauth:bllogin' %}">登录</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'blauth:register' %}">注册</a></li>
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="col-lg-8 col-12 p-0 ms-2">
+                <div class="col-lg-8 col-12 p-0 ms-2 mt-2">
                     {% for blog in blogs %}
                         <div class="col-12">
                             <div class="g-0 border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative bg-light">
