@@ -1,3 +1,4 @@
+from django.contrib.admin.templatetags.admin_list import pagination
 from django.shortcuts import render, redirect, reverse
 from django.http.response import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -6,11 +7,19 @@ from .models import Blog, BlogComment,BlogCategory
 from .forms import PubBlogForm
 from django.db.models import Q
 
+from django.views.generic.list import ListView
+from django.core.paginator import Paginator
+
 # Create your views here.
 
 def index(request):
     blogs = Blog.objects.all()
-    return render(request, 'html/index.html', context={'blogs':blogs})
+    blogs = Paginator(blogs, 10)
+
+    page_number = request.GET.get('page')
+    blogs_obj = blogs.get_page(page_number)
+    pages = range(1, blogs_obj.paginator.num_pages + 1)
+    return render(request, 'html/index.html', context={'blogs':blogs_obj, 'pages':pages})
 
 def home(request):
     return render(request, 'html/home.html')

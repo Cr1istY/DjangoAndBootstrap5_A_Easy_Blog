@@ -1,6 +1,13 @@
 {% extends 'base/base.html' %}
-{% block title %}ForeverYang{% endblock %}
-
+{% block title %}博客首页{% endblock %}
+{% block head %}
+    <style>
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+{% endblock %}
 {% block content %}
     <section>
         <div class="container-fluid">
@@ -45,7 +52,8 @@
                             <a href="#"
                                class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <strong>{% if user.is_authenticated %}{{ user.username }}{% else %}未登录{% endif %}</strong>
+                                <strong>{% if user.is_authenticated %}{{ user.username }}{% else %}
+                                    未登录{% endif %}</strong>
                             </a>
                             <ul class="dropdown-menu text-small shadow">
                                 <li><a class="dropdown-item" href="#">每日推荐</a></li>
@@ -88,4 +96,48 @@
         </div>
 
     </section>
+
+    <section>
+        <div class="container my-3 d-flex justify-content-center">
+            <div class="row">
+                <div class="g-2">
+                    {#  检测是否有前页   #}
+                    {% if blogs.has_previous %}
+                        <a href="?page=1">
+                            <button type="button" class="btn btn-info">第一页</button>
+                        </a>
+                        <a href="?page={{ blogs.previous_page_number }}">
+                            <button type="button"
+                                    class="btn btn-info">前页
+                            </button>
+                        </a>
+                    {% endif %}
+                    {#  翻页  #}
+                    {% for i in pages %}
+                        {% if i == blogs.number %}
+                            <a href="?page={{ i }}">
+                                <button type="button" class="btn btn-primary">{{ i }}</button>
+                            </a>
+                        {% else %}
+                            <a href="?page={{ i }}">
+                                <button type="button" class="btn btn-secondary">{{ i }}</button>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                    {#  检测是否有后页   #}
+                    {% if blogs.has_next %}
+                        <a href="?page={{ blogs.next_page_number }}">
+                            <button type="button" class="btn btn-info">后页</button>
+                        </a>
+                        <a href="?page={{ blogs.paginator.num_pages }}">
+                            <button type="button" class="btn btn-info">最后</button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
 {% endblock %}
