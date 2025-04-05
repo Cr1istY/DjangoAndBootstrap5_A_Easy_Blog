@@ -8,6 +8,7 @@ import photo
 class Userprofile(models.Model):
     name = models.CharField(max_length=20)
     icon = models.ImageField(upload_to='imgs/%Y/%m/%d',verbose_name="photo")
+    place = models.CharField(max_length=50, default='Chongqing')
 
     class Meta:
         db_table = 'photo'

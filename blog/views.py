@@ -15,11 +15,11 @@ from django.core.paginator import Paginator
 def index(request):
     blogs = Blog.objects.all()
     blogs = Paginator(blogs, 10)
-
+    categories = BlogCategory.objects.all()
     page_number = request.GET.get('page')
     blogs_obj = blogs.get_page(page_number)
     pages = range(1, blogs_obj.paginator.num_pages + 1)
-    return render(request, 'html/index.html', context={'blogs':blogs_obj, 'pages':pages})
+    return render(request, 'html/index.html', context={'blogs':blogs_obj, 'pages':pages, 'categories': categories})
 
 def home(request):
     return render(request, 'html/home.html')
@@ -62,6 +62,6 @@ def pub_comment(request):
 @require_GET
 def search(request):
     q = request.GET.get('q')
-    blogs = Blog.objects.filter(Q(title__icontains=q) |Q(content__icontains=q)).all()
+    blogs = Blog.objects.filter(Q(title__icontains=q) | Q(content__icontains=q) | Q(category__name__icontains=q) | Q(author__username__icontains=q) ).all()
     return render(request, 'html/index.html', context={'blogs': blogs})
 

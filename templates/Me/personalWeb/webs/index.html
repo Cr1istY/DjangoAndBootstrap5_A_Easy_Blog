@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static '/me/others/card-trans.css' %}">
     <link rel="stylesheet" href="{% static 'me/others/moon-card.css' %}">
     <link rel="stylesheet" href="{% static 'me/others/solar.css' %}">
+    <link rel="shortcut icon" href="{% static 'icon/宇宙星球-13.svg' %}" type="image/x-icon">
     <style>
         body {
 
@@ -66,14 +67,14 @@
     <div id="header">
         <div class="container-fluid">
             <header class="d-flex flex-wrap justify-content-center py-3">
-                <a href="#"
+                <a href="{% url 'blog:index' %}"
                    class="d-flex align-items-center mb-3 px-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                     <img src="{% static 'me/pic/PIA14935~orig.jpg' %}" alt="/" class="me-3"
                          style="width: 40px; height: 40px;">
                     <span class="fs-4">ForeverYang`blog</span>
                 </a>
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a href="{% url 'blog:index' %}" class="nav-link" target="_self"><img
+                    <li class="nav-item"><a href="{% url 'blog:blog_publish' %}" class="nav-link" target="_self"><img
                             src="{% static 'me/icon/写博客.svg' %}"
                             alt=""></a></li>
                     <li class="nav-item"><a href="https://www.cqupt.edu.cn/" class="nav-link" target="_blank"><img
