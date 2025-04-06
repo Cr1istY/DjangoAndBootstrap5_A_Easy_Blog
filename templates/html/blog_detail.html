@@ -18,8 +18,7 @@
                 padding: 15px;
             }
         }
-    </style>
-{% endblock %}
+    </style>{% endblock %}
 {% block content %}
     <div class="container bg-white p-5 rounded">
         <div class="row">
@@ -69,11 +68,7 @@
                     <li class="list-group-item">
                         <div class="d-flex justify-content-between">
                             <a href="#" class="user-info fs-6 text-decoration-none text-dark text-body-secondary">
-                                <img src="{% static 'pic/PIA14935~orig.jpg' %}" alt="" class="rounded-circle"
-                                     style="width: 40px; height: 40px;">
-                                <span class="ms-2">
                             {{ comment.author.username }}
-                        </span>
                             </a>
                             <div class="creat-time" style="line-height : 40px;">
                                 {{ comment.pub_date|date:"Y年m月d日 h时i分" }}

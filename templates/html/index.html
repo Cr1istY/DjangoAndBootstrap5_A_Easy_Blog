@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{% static 'others/cs/selfButton.css' %}">
     <style>
         body {
-            background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+
         }
 
         a {
@@ -14,111 +14,101 @@
             user-select: none;
         }
 
-        button {
-            height: 100%;
+        #sidebar button {
+            width: 100%;
+            height: auto;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-weight: 900;
             border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        #sidebar button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
         div {
             user-select: none;
         }
 
+        #sidebar li {
+            width: 90%;
+        }
+
+        span img {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+
     </style>
 {% endblock %}
 {% block content %}
-    <section>
+    <section class="bg-light">
         <div class="container-fluid px-0">
-            <div class="row mx-5 mx-lg-0 px-lg-0 justify-content-between">
-                <div class="d-none d-lg-flex col-lg-2 flex-column flex-shrink-0 p-3 bg-body-tertiary vh-100 sticky-top"
+            <div class="row mx-lg-0 px-lg-0 justify-content-lg-between">
+                <div class="d-none d-md-flex col-md-2 flex-column flex-shrink-0 p-0 bg-body-tertiary vh-100 sticky-top border-end"
                 >
-                    <div class="card" style="height: 50%">
-                        <a href="" class="h-100">
-                            <img src="{% static 'me/pic/img_1.png' %}" alt="" class="card-img-top rounded-0 h-100"
-                                 style="object-fit: cover;">
-                        </a>
-                    </div>
-                    <hr>
-                    <ul class="nav nav-pills flex-column mb-auto d-flex justify-content-center px-0" id="sidebar">
+                <hr class="mt-0">
+                    <ul class="nav nav-pills flex-column mb-auto d-flex justify-content-center text-center px-0 w-100" id="sidebar">
                         <li>
-                            <a href="{% url 'aboutMe:Me' %}" class="nav-link link-body-emphasis p-0"
-                               aria-current="page">
-                                <button class="buttonbox p-2 mb-0">
-                                    <span>主页</span>
-                                </button>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
+                            <a href="{% url 'aboutMe:Me' %}" class="nav-link link-body-emphasis p-0">
+                                <span><img src="{% static 'icon/主页.svg' %}" alt="">主页</span>
                             </a>
+                            </button>
 
                         </li>
                         <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
                             <a href="{% url 'photo:photo_view' %}" class="nav-link link-body-emphasis p-0">
-                                <button class="buttonbox p-2 m-0"><span>摄影</span></button>
+                                <span><img src="{% static 'icon/照相机.svg' %}" alt="">摄影</span>
                             </a>
-
+                            </button>
                         </li>
                         <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
                             <a href="#" class="nav-link link-body-emphasis p-0">
-                                <button class="buttonbox p-2 m-0"><span>阅读</span></button>
+                                <span><img src="{% static 'icon/书籍.svg' %}" alt="">书籍</span>
                             </a>
+                            </button>
                         </li>
                         <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
                             <a href="#" class="nav-link link-body-emphasis p-0">
-                                <button class="buttonbox p-2 m-0"><span>宇宙</span></button>
+                                <span><img src="{% static 'icon/地球.svg' %}" alt="">宇宙</span>
                             </a>
+                            </button>
                         </li>
                         <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
                             <a href="#" class="nav-link link-body-emphasis p-0">
-                                <button class="buttonbox p-2 m-0"><span>专辑</span></button>
+                                <span><img src="{% static 'icon/专辑.svg' %}" alt="">专辑</span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="btn-f">
-                                    <div class="wrapper">
-                                        <div class="flower flower1">
-                                            <div class="petal one"></div>
-                                            <div class="petal two"></div>
-                                            <div class="petal three"></div>
-                                            <div class="petal four"></div>
-                                        </div>
-                                        <div class="flower flower2">
-                                            <div class="petal one"></div>
-                                            <div class="petal two"></div>
-                                            <div class="petal three"></div>
-                                            <div class="petal four"></div>
-                                        </div>
-                                        <div class="flower flower3">
-                                            <div class="petal one"></div>
-                                            <div class="petal two"></div>
-                                            <div class="petal three"></div>
-                                            <div class="petal four"></div>
-                                        </div>
-                                        <div class="flower flower4">
-                                            <div class="petal one"></div>
-                                            <div class="petal two"></div>
-                                            <div class="petal three"></div>
-                                            <div class="petal four"></div>
-                                        </div>
-                                        <div class="flower flower5">
-                                            <div class="petal one"></div>
-                                            <div class="petal two"></div>
-                                            <div class="petal three"></div>
-                                            <div class="petal four"></div>
-                                        </div>
-                                        <div class="flower flower6">
-                                            <div class="petal one"></div>
-                                            <div class="petal two"></div>
-                                            <div class="petal three"></div>
-                                            <div class="petal four"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                     <hr>
-                    <div class="dropdown">
+                    <ul class="nav nav-pills flex-column mb-auto d-flex justify-content-center text-center px-0 w-100" id="sidebar">
+                        {% for category in categories %}
+                            <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
+                                <a href="{% url 'blog:search' %}{{ '?q=' }}{{ category.name }}">
+                                    <span>{{ category.name }}</span>
+                                </a>
+                            </button>
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <hr>
+                    <div class="dropdown mb-4">
                         {% if user.is_authenticated %}
                             <a href="#"
-                               class="d-flex align-items-center justify-content-center link-body-emphasis text-decoration-none dropdown-toggle"
+                               class="d-flex align-items-center ps-4 link-body-emphasis text-decoration-none dropdown-toggle"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <strong>{% if user.is_authenticated %}{{ user.username }}{% else %}
                                     未登录{% endif %}</strong>
@@ -142,18 +132,20 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="col-lg-8 col-12 p-0 mx-2 mt-2">
+                <div class="col-md-10 col-lg-10 col-12 p-0 m-0">
                     {% for blog in blogs %}
-                        <div class="col-12 mb-3">
-                            <div class="g-0 border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative bg-light">
+                        <div class="col-12">
+                            <div class="g-0 overflow-hidden border-bottom flex-md-row shadow-sm h-md-250 position-relative bg-light">
                                 <div class="col p-4 d-flex flex-column position-static">
                                     <div class="row">
                                         <div class="col-9">
-                                            <div class="mb-2"><h2 class="mb-0">{{ blog.title }}</h2></div>
+                                            <a href="{% url 'blog:blog_detail' blog_id=blog.id %}">
+                                                <div class="mb-2"><h2 class="mb-0">{{ blog.title }}</h2></div>
+                                            </a>
                                             <div>
                                                 <p class="card-text mb-auto">{{ blog.content|striptags|truncatechars:75 }}</p>
                                             </div>
-                                            <div class="mt-4"><strong class="d-inline-block mb-2 text-primary"><a
+                                            <div class="mt-2"><strong class="d-inline-block mb-2 text-primary"><a
                                                     href="{% url 'blog:search' %}{{ '?q=' }}{{ blog.category.name }}">{{ blog.category.name }}</a></strong>
                                             </div>
                                         </div>
@@ -161,11 +153,6 @@
                                             <p>作者：{{ blog.author }}</p>
                                             <p>发表于：{{ blog.pub_date|date:"m月d日" }}</p>
                                             <div class="d-flex justify-content-end mt-3 mb-0">
-                                                <a href="{% url 'blog:blog_detail' blog_id=blog.id %}">
-                                                    <button class="button-name">
-                                                        <span>点击进入</span>
-                                                    </button>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -178,7 +165,7 @@
                             {#  检测是否有前页   #}
                             {% if blogs.has_previous %}
                                 <a href="?page=1">
-                                    <button type="button" class="btn btn-info">第一页</button>
+                                    <button type="button" class="btn btn-info">首页</button>
                                 </a>
                                 <a href="?page={{ blogs.previous_page_number }}">
                                     <button type="button"
@@ -204,26 +191,11 @@
                                     <button type="button" class="btn btn-info">后页</button>
                                 </a>
                                 <a href="?page={{ blogs.paginator.num_pages }}">
-                                    <button type="button" class="btn btn-info">最后</button>
+                                    <button type="button" class="btn btn-info">尾页</button>
                                 </a>
                             {% endif %}
                         </div>
                     </div>
-                </div>
-                <div class="d-none d-lg-flex col-lg-auto flex-column flex-shrink-0 p-3 bg-body-tertiary vh-100 sticky-top"
-                >
-                    <ul class="nav nav-pills flex-column mb-auto px-0 m-3" id="sidebar">
-                        <div>
-                            <p>已开设：</p>
-                        </div>
-                        <hr>
-                        {% for category in categories %}
-                            <li>
-                                <a href="{% url 'blog:search' %}{{ '?q=' }}{{ category.name }}">{{ category.name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    <hr>
                 </div>
             </div>
         </div>

@@ -2,11 +2,11 @@
 {% block title %}摄影集{% endblock %}
 {% block head %}
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css">
+          href="{% static 'others/js/http_cdnjs.cloudflare.com_ajax_libs_justifiedGallery_3.8.1_css_justifiedGallery.css' %}">
 
     <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+            href="{% static 'others/js/http_cdn.jsdelivr.net_npm_@fancyapps_ui@5.0_dist_fancybox_fancybox.css' %}"
     />
 
 {% endblock %}
@@ -23,9 +23,9 @@
     </main>
 {% endblock %}
 {% block script %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="{% static 'others/js/http_cdnjs.cloudflare.com_ajax_libs_jquery_3.6.0_jquery.js' %}"></script>
+    <script src="{% static 'others/js/http_cdnjs.cloudflare.com_ajax_libs_justifiedGallery_3.8.1_js_jquery.justifiedGallery.js' %}"></script>
+    <script src="{% static 'others/js/http_cdnjs.cloudflare.com_ajax_libs_fancybox_3.5.7_jquery.fancybox.js' %}"></script>
     <script>
         $(document).ready(function () {
             $("#myGallery").justifiedGallery({

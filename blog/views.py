@@ -63,5 +63,6 @@ def pub_comment(request):
 def search(request):
     q = request.GET.get('q')
     blogs = Blog.objects.filter(Q(title__icontains=q) | Q(content__icontains=q) | Q(category__name__icontains=q) | Q(author__username__icontains=q) ).all()
-    return render(request, 'html/index.html', context={'blogs': blogs})
+    categories = BlogCategory.objects.all()
+    return render(request, 'html/index.html', context={'blogs': blogs, 'categories': categories})
 
