@@ -1,0 +1,114 @@
+/* From Uiverse.io by R5Program */
+.moon-card {
+    background: linear-gradient(45deg, #000000, #0a0a2e);
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s,
+    box-shadow 0.3s;
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.1);
+}
+
+/* Enhanced Moon with Craters */
+
+@media (min-width: 800px) {
+    .moon {
+        height: 200px;
+        width: 200px;
+        top: 180px;
+        background: linear-gradient(145deg, #f0f0f0, #ffffff);
+        border-radius: 50%;
+        position: absolute;
+        box-shadow: 0 0 40px rgba(235, 235, 235, 0.5),
+        inset -5px -5px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+}
+
+@media (max-width: 800px) {
+    .moon {
+        height: 200px;
+        width: 200px;
+        top: 30px;
+        left: 30px;
+        background: linear-gradient(145deg, #f0f0f0, #ffffff);
+        border-radius: 50%;
+        position: absolute;
+        box-shadow: 0 0 40px rgba(235, 235, 235, 0.5),
+        inset -5px -5px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+
+}
+
+
+/* Moon Craters */
+.crater {
+    position: absolute;
+    background: rgba(200, 200, 200, 0.3);
+    border-radius: 50%;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cr1 {
+    width: 20px;
+    height: 20px;
+    top: 40px;
+    left: 50px;
+}
+
+.cr2 {
+    width: 30px;
+    height: 30px;
+    top: 70px;
+    left: 60px;
+}
+
+.cr3 {
+    width: 18px;
+    height: 18px;
+    top: 55px;
+    left: 20px;
+}
+
+
+.particles-container {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* 确保粒子在其他内容下方 */
+    pointer-events: none; /* 粒子不会影响用户交互 */
+}
+
+/* 粒子样式 */
+.particle {
+    position: absolute;
+    background: linear-gradient(90deg, white, lightblue);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(173, 216, 230, 0.6);
+    opacity: 0.8;
+    filter: blur(1px);
+    animation: float linear infinite reverse;
+}
+
+/* 动画定义 */
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate(var(--distance-x), var(--distance-y)) rotate(360deg);
+    }
+}
+
+/* Hover Effects */
+.moon-card:hover .moon {
+    box-shadow: 0 0 60px rgba(173, 216, 230, 0.7),
+    inset -8px -8px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #e0ffff, #ffffff);
+}

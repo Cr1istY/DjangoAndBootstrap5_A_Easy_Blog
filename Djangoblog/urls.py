@@ -15,11 +15,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.conf.global_settings import MEDIA_ROOT
+from django.urls import path, include, re_path
+from django.views.static import serve
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls')),
+    path('blog/', include('blog.urls')),
     path('auth/', include('blauth.urls')),
+    path('', include('aboutMe.urls')),
+    re_path(r'photo/uploads/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
+    path('photo/', include  ('photo.urls')),
+
 
 ]
