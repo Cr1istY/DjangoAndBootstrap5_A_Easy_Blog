@@ -27,8 +27,10 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0 text-decoration-none">
-                <li><a href="{% url 'aboutMe:Me' %}" class="nav-link pe-0">主页</a></li>
-                <li><a href="{% url 'blog:blog_publish' %}" class="nav-link pe-0">发表想法</a></li>
+                <li><a href="{% url 'aboutMe:Me' %}" class="nav-link">主页</a></li>
+
+                <li><a href="{% if user.is_authenticated %}{% url 'blog:blog_publish' %}{% else %}{% url 'blauth:bllogin' %}{% endif %}" class="nav-link">发表想法</a></li>
+                <li><a href="{% url 'aboutMe:aboutMe' %}" class="nav-link">关于我</a></li>
             </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'blog:search' %}" method="GET">
                 <input type="search" name="q" class="form-control form-control-dark" placeholder="搜索..."
@@ -42,7 +44,7 @@
                         <strong>{% if user.is_authenticated %}{{ user.username }}{% else %}未登录{% endif %}</strong>
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">每日推荐</a></li>
+                        <li><a class="dropdown-item" href="{% url 'blog:recommend' %}">每日推荐</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

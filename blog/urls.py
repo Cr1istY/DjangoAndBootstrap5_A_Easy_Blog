@@ -10,4 +10,5 @@ urlpatterns = [
     path('pub', views.pub, name='blog_publish'),
     path('comment/pub', views.pub_comment, name='pub_comment'),
     path('search', views.search, name='search'),
+    path('recommend', views.recommend, name='recommend'),
 ]

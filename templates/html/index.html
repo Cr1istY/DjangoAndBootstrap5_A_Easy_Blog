@@ -106,30 +106,23 @@
                     </ul>
                     <hr>
                     <div class="dropdown mb-4">
-                        {% if user.is_authenticated %}
                             <a href="#"
                                class="d-flex align-items-center ps-4 link-body-emphasis text-decoration-none dropdown-toggle"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <strong>{% if user.is_authenticated %}{{ user.username }}{% else %}
                                     未登录{% endif %}</strong>
                             </a>
+                            {% if user.is_authenticated %}
                             <ul class="dropdown-menu text-small shadow">
-                                <li><a class="dropdown-item text-center" href="#">每日推荐</a></li>
+                                <li><a class="dropdown-item text-center" href="{% url 'blog:recommend' %}">每日推荐</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item text-center" href="{% url 'blauth:bllogout' %}">退出登录</a>
+                                <li><a class="dropdown-item text-center" href="{% url 'blauth:bllogout' %}">退出登录
+                                    </a>
                                 </li>
                             </ul>
-                        {% else %}
-                            <ul class="dropdown-menu text-small shadow">
-                                <li><a class="dropdown-item" href="{% url 'blauth:bllogin' %}">登录</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="{% url 'blauth:register' %}">注册</a></li>
-                            </ul>
-                        {% endif %}
+                    {% endif %}
                     </div>
                 </div>
                 <div class="col-md-10 col-lg-10 col-12 p-0 m-0">

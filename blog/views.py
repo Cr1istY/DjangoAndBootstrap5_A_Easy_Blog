@@ -1,4 +1,3 @@
-from django.contrib.admin.templatetags.admin_list import pagination
 from django.shortcuts import render, redirect, reverse
 from django.http.response import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -6,10 +5,9 @@ from django.views.decorators.http import require_http_methods, require_POST, req
 from .models import Blog, BlogComment,BlogCategory
 from .forms import PubBlogForm
 from django.db.models import Q
-
-from django.views.generic.list import ListView
 from django.core.paginator import Paginator
 
+import random
 # Create your views here.
 
 def index(request):
@@ -65,4 +63,8 @@ def search(request):
     blogs = Blog.objects.filter(Q(title__icontains=q) | Q(content__icontains=q) | Q(category__name__icontains=q) | Q(author__username__icontains=q) ).all()
     categories = BlogCategory.objects.all()
     return render(request, 'html/index.html', context={'blogs': blogs, 'categories': categories})
+
+def recommend(request):
+    blog = random.choice(Blog.objects.all())
+    return render(request, 'html/blog_detail.html', context={'blog': blog})
 
