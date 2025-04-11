@@ -1,0 +1,352 @@
+{% extends 'base/base.html' %}
+
+{% block head %}
+    <style>
+        body {
+            background-color: #fff;
+        }
+
+        li {
+            user-select: none;
+        }
+
+        .nav li:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        div {
+            user-select: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .now {
+            border-bottom: 2px solid dimgrey;
+        }
+
+
+        #page2 img {
+            width: 100%;
+        }
+
+        #page2 {
+            display: none;
+        }
+
+        #page3 {
+            display: none;
+        }
+
+        .card-cpp {
+            position: relative;
+            width: 220px;
+            height: 500px;
+            border-radius: 14px;
+            z-index: 1111;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;;
+        }
+
+        .card-js {
+            position: relative;
+            width: 220px;
+            height: 500px;
+            border-radius: 14px;
+            z-index: 1111;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;;
+        }
+
+        .card-html {
+            position: relative;
+            width: 220px;
+            height: 500px;
+            border-radius: 14px;
+            z-index: 1111;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;;
+        }
+
+        .card-python {
+            position: relative;
+            width: 220px;
+            height: 500px;
+            border-radius: 14px;
+            z-index: 1111;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;;
+        }
+
+        .card-go {
+            position: relative;
+            width: 220px;
+            height: 500px;
+            border-radius: 14px;
+            z-index: 1111;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;;
+        }
+
+
+        .bg {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 210px;
+            height: 490px;
+            z-index: 2;
+            background: rgba(255, 255, 255, .95);
+            backdrop-filter: blur(24px);
+            border-radius: 10px;
+            overflow: hidden;
+            outline: 2px solid white;
+        }
+
+        .blob {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 450px;
+            border-radius: 50%;
+            background-color: #00599C;
+            opacity: 1;
+            filter: blur(12px);
+            animation: blob-bounce 5s infinite ease;
+        }
+
+        @keyframes blob-bounce {
+            0% {
+                transform: translate(-100%, -100%) translate3d(0, 0, 0);
+            }
+
+            25% {
+                transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+            }
+
+            50% {
+                transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+            }
+
+            75% {
+                transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+            }
+
+            100% {
+                transform: translate(-100%, -100%) translate3d(0, 0, 0);
+            }
+        }
+
+
+    </style>
+
+
+{% endblock head %}
+{% block content %}
+    <h1 class="text-center visually-hidden">About Me</h1>
+    <section id="page1" class="page">
+        <div class="container-fluid bg-light">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item p-1 px-3 ms-5 now">
+                    <a href="#" class="text-decoration-none text-dark" onclick="showPage('page1')">个人介绍</a>
+                </li>
+                <li class="nav-item p-1 px-3">
+                    <a href="#" class="text-decoration-none text-dark" onclick="showPage('page2')">技能</a>
+                </li>
+                {#                <li class="nav-item p-1 px-3">#}
+                {#                    <a href="#" class="text-decoration-none text-dark" onclick="showPage('page3')">项目</a>#}
+                {#                </li>#}
+            </ul>
+        </div>
+        <div class="p-2"></div>
+        <div class="container">
+            <div class="row py-3">
+                <div class="col-4">
+                    <div class="justify-content-center">
+                        <img src="{% static 'pic/YKW_3503.jpg' %}" class="img-fluid rounded-circle mx-auto d-block w-75"
+                             alt="...">
+                        <div class="ps-5 pt-3">
+                            <div class="row">
+                                <span class="fs-4"><strong>杨小文</strong></span>
+                            </div>
+                            <div class="row">
+                                <span>Crist Yang</span>
+                            </div>
+                            <div class="row my-3">
+                                <p>来自重庆邮电大学</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div>
+                        <div class="row border-bottom p-3 fs-4">
+                            个人经历:
+                        </div>
+                        <ul class="list-group list-group-flush p-2">
+                            <li class="list-group-item border-0">
+                                <strong>物联网工程 · 重庆邮电大学 · 2023 - 至今</strong>
+                            </li>
+                            <li class="list-group-item border-0 py-0">
+                                <strong>
+                                    平均学分绩点：
+                                </strong>
+                                3.00
+                            </li>
+                            <li class="list-group-item border-0 py-0">
+                                <strong>
+                                    主干学科：
+                                </strong>
+                                计算机科学与技术、信息与通信工程、控制科学与工程
+                            </li>
+                            <li class="list-group-item border-0 py-0">
+                                <strong>
+                                    核心学科：
+                                </strong>
+                                传感器与自动检测技术、自动控制原理A、物联网通信技术基础、数据库系统与软件建模、无线传感器网络、物联网自动识别技术、工业互联网安全技术
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="row border-bottom p-3 fs-4">
+                            其他兴趣:
+                        </div>
+                        <ul class="list-group list-group-flush p-2">
+                            <li class="list-group-item border-0 py-0">
+                                <strong>摄影：</strong>500px注册摄影师
+                            </li>
+                            <li class="list-group-item border-0 py-0">
+                                <strong>电影：</strong>对影史有所涉略
+                            </li>
+                            <li class="list-group-item border-0 py-0">
+                                <strong>哲学：</strong>热爱哲学，信仰马克思主义
+                            </li>
+                            <li class="list-group-item border-0 py-0">
+                                <strong>历史：</strong>了解中国历史，对中国古典文学有所爱好
+                            </li>
+                            <li class="list-group-item border-0 py-0">
+                                <strong>其他：</strong>知乎新晋答主，网易云七级黑椒会员，哔哩哔哩五级用户
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="page2" class="page">
+        <div class="container-fluid bg-light">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item p-1 px-3 ms-5">
+                    <a href="#" class="text-decoration-none text-dark" onclick="showPage('page1')">个人介绍</a>
+                </li>
+                <li class="nav-item p-1 px-3 now">
+                    <a href="#" class="text-decoration-none text-dark" onclick="showPage('page2')">技能</a>
+                </li>
+                {#                <li class="nav-item p-1 px-3">#}
+                {#                    <a href="#" class="text-decoration-none text-dark" onclick="showPage('page3')">项目</a>#}
+                {#                </li>#}
+            </ul>
+        </div>
+
+        <div class="p-2"></div>
+        <div class="container">
+            <div class="row justify-content-between align-content-center py-3">
+                <div class="col-3 card-cpp m-3">
+                    <div class="bg justify-content-center align-content-center">
+                        <img src="{% static 'icon/cplusplus.svg' %}" alt="" class="w-100 d-flex">
+                        <div class="p-2 text-center"><strong>75/100</strong></div>
+                    </div>
+                    <div class="blob"></div>
+                </div>
+                <div class="col-3 card-js m-3">
+                    <div class="bg justify-content-center align-content-center">
+                        <img src="{% static 'icon/JavaScript.svg' %}" alt="" class="w-100 d-flex">
+                        <div class="p-2 text-center"><strong>70/100</strong></div>
+                    </div>
+                    <div class="blob"></div>
+                </div>
+
+                <div class="col-3 card-html m-3">
+                    <div class="bg justify-content-center align-content-center">
+                        <img src="{% static 'icon/html.svg' %}" alt="" class="w-100 d-flex">
+                        <div class="p-2 text-center"><strong>90/100</strong></div>
+                    </div>
+                    <div class="blob"></div>
+                </div>
+
+                <div class="col-3 card-python m-3">
+                    <div class="bg justify-content-center align-content-center">
+                        <img src="{% static 'icon/Python.svg' %}" alt="" class="w-100 d-flex">
+                        <div class="p-2 text-center"><strong>85/100</strong></div>
+                    </div>
+                    <div class="blob"></div>
+                </div>
+
+                <div class="col-3 card-go m-3">
+                    <div class="bg justify-content-center align-content-center">
+                        <img src="{% static 'icon/Golang.svg' %}" alt="" class="w-100 d-flex">
+                        <div class="p-2 text-center"><strong>75/100</strong></div>
+                    </div>
+                    <div class="blob"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <section id="page3" class="page">
+        <div class="container-fluid bg-light">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item p-1 px-3 ms-5">
+                    <a href="#" class="text-decoration-none text-dark" onclick="showPage('page1')">个人介绍</a>
+                </li>
+                <li class="nav-item p-1 px-3">
+                    <a href="#" class="text-decoration-none text-dark" onclick="showPage('page2')">技能</a>
+                </li>
+                {#                <li class="nav-item p-1 px-3 now">#}
+                {#                    <a href="#" class="text-decoration-none text-dark" onclick="showPage('page3')">项目</a>#}
+                {#                </li>#}
+            </ul>
+        </div>
+
+    </section>
+
+{% endblock content %}
+
+{% block script %}
+    <script>
+        function showPage(pageId) {
+            var pages = document.getElementsByClassName("page");
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].style.display = "none";
+            }
+            document.getElementById(pageId).style.display = "block";
+        }
+    </script>
+{% endblock script %}

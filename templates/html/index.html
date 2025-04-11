@@ -1,35 +1,203 @@
 {% extends 'base/base.html' %}
-{% block title %}ForeverYang{% endblock %}
+{% block title %}博客首页{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'others/cs/selfButton.css' %}">
+    <style>
+        body {
 
+        }
+
+        a {
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+            user-select: none;
+        }
+
+        #sidebar button {
+            width: 100%;
+            height: auto;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-weight: 900;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        #sidebar button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        div {
+            user-select: none;
+        }
+
+        #sidebar li {
+            width: 90%;
+        }
+
+        span img {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+
+    </style>
+{% endblock %}
 {% block content %}
-    <section>
-        <div class="container">
-            <div class="p-4 p-md-5 mb-4 text-white bg-dark">
-                <div class="col-md-6 px-0">
-                    <h3 class="display-4 fst-italic">精选内容</h3>
-                    <p class="lead my-3">这些是我的精选分享。</p>
-                    <p class="lead mb-0"><a href="#" class="text-white fw-bold">查看更多...</a></p>
+    <section class="bg-light">
+        <div class="container-fluid px-0">
+            <div class="row mx-lg-0 px-lg-0 justify-content-lg-between">
+                <div class="d-none d-md-flex col-md-2 flex-column flex-shrink-0 p-0 bg-body-tertiary vh-100 sticky-top border-end"
+                >
+                <hr class="mt-0">
+                    <ul class="nav nav-pills flex-column mb-auto d-flex justify-content-center text-center px-0 w-100" id="sidebar">
+                        <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
+                            <a href="{% url 'aboutMe:Me' %}" class="nav-link link-body-emphasis p-0">
+                                <span><img src="{% static 'icon/主页.svg' %}" alt="">主页</span>
+                            </a>
+                            </button>
+
+                        </li>
+                        <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
+                            <a href="{% url 'photo:photo_view' %}" class="nav-link link-body-emphasis p-0">
+                                <span><img src="{% static 'icon/照相机.svg' %}" alt="">摄影</span>
+                            </a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
+                            <a href="#" class="nav-link link-body-emphasis p-0">
+                                <span><img src="{% static 'icon/书籍.svg' %}" alt="">书籍</span>
+                            </a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
+                            <a href="#" class="nav-link link-body-emphasis p-0">
+                                <span><img src="{% static 'icon/地球.svg' %}" alt="">宇宙</span>
+                            </a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
+                            <a href="#" class="nav-link link-body-emphasis p-0">
+                                <span><img src="{% static 'icon/专辑.svg' %}" alt="">专辑</span>
+                            </a>
+                            </button>
+                        </li>
+                    </ul>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto d-flex justify-content-center text-center px-0 w-100" id="sidebar">
+                        {% for category in categories %}
+                            <li>
+                            <button class="px-5 py-2 ps-2 mx-2 d-flex justify-content-start">
+                                <a href="{% url 'blog:search' %}{{ '?q=' }}{{ category.name }}">
+                                    <span>{{ category.name }}</span>
+                                </a>
+                            </button>
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <hr>
+                    <div class="dropdown mb-4">
+                            <a href="#"
+                               class="d-flex align-items-center ps-4 link-body-emphasis text-decoration-none dropdown-toggle"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <strong>{% if user.is_authenticated %}{{ user.username }}{% else %}
+                                    未登录{% endif %}</strong>
+                            </a>
+                            {% if user.is_authenticated %}
+                            <ul class="dropdown-menu text-small shadow">
+                                <li><a class="dropdown-item text-center" href="{% url 'blog:recommend' %}">每日推荐</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-center" href="{% url 'blauth:bllogout' %}">退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                    {% endif %}
+                    </div>
                 </div>
-            </div>
-
-
-            <div class="row">
-                {% for blog in blogs %}
-                    <div class="col-md-6">
-                        <div class="g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-primary">{{ blog.category }}</strong>
-                                <h3 class="mb-0">{{ blog.title }}</h3>
-                                <div class="mb-1 text-muted">{{ blog.pub_date|date:"m月d日" }}</div>
-                                <p class="card-text mb-auto">{{ blog.content|striptags|truncatechars:50 }}</p>
-                                <a href="{% url 'blog:blog_detail' blog_id=blog.id %}"
-                                   class="stretched-link">点击阅读...</a>
+                <div class="col-md-10 col-lg-10 col-12 p-0 m-0">
+                    {% for blog in blogs %}
+                        <div class="col-12">
+                            <div class="g-0 overflow-hidden border-bottom flex-md-row shadow-sm h-md-250 position-relative bg-light">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <a href="{% url 'blog:blog_detail' blog_id=blog.id %}">
+                                                <div class="mb-2"><h2 class="mb-0">{{ blog.title }}</h2></div>
+                                            </a>
+                                            <div>
+                                                <p class="card-text mb-auto">{{ blog.content|striptags|truncatechars:75 }}</p>
+                                            </div>
+                                            <div class="mt-2"><strong class="d-inline-block mb-2 text-primary"><a
+                                                    href="{% url 'blog:search' %}{{ '?q=' }}{{ blog.category.name }}">{{ blog.category.name }}</a></strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 text-end">
+                                            <p>作者：{{ blog.author }}</p>
+                                            <p>发表于：{{ blog.pub_date|date:"m月d日" }}</p>
+                                            <div class="d-flex justify-content-end mt-3 mb-0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    {% endfor %}
+                    <div class="container my-3 d-flex justify-content-center">
+                        <div class="g-2">
+                            {#  检测是否有前页   #}
+                            {% if blogs.has_previous %}
+                                <a href="?page=1">
+                                    <button type="button" class="btn btn-info">首页</button>
+                                </a>
+                                <a href="?page={{ blogs.previous_page_number }}">
+                                    <button type="button"
+                                            class="btn btn-info">前页
+                                    </button>
+                                </a>
+                            {% endif %}
+                            {#  翻页  #}
+                            {% for i in pages %}
+                                {% if i == blogs.number %}
+                                    <a href="?page={{ i }}">
+                                        <button type="button" class="btn btn-primary">{{ i }}</button>
+                                    </a>
+                                {% else %}
+                                    <a href="?page={{ i }}">
+                                        <button type="button" class="btn btn-secondary">{{ i }}</button>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            {#  检测是否有后页   #}
+                            {% if blogs.has_next %}
+                                <a href="?page={{ blogs.next_page_number }}">
+                                    <button type="button" class="btn btn-info">后页</button>
+                                </a>
+                                <a href="?page={{ blogs.paginator.num_pages }}">
+                                    <button type="button" class="btn btn-info">尾页</button>
+                                </a>
+                            {% endif %}
+                        </div>
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
 
     </section>
+
+    <section>
+
+
+    </section>
+
 {% endblock %}

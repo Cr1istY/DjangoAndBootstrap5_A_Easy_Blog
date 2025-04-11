@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% block title %}摄影集{% endblock %}
+{% block head %}
+    <link rel="stylesheet"
+          href="{% static 'others/js/http_cdnjs.cloudflare.com_ajax_libs_justifiedGallery_3.8.1_css_justifiedGallery.css' %}">
+
+    <link
+            rel="stylesheet"
+            href="{% static 'others/js/http_cdn.jsdelivr.net_npm_@fancyapps_ui@5.0_dist_fancybox_fancybox.css' %}"
+    />
+
+{% endblock %}
+{% block content %}
+    <h1 class="visually-hidden">Cristwhy`Photos</h1>
+    <main>
+        <div id="myGallery">
+            {% for img in imgs %}
+                <a href="{% static '/photo/' %}{{ img.icon }}" data-fancybox="gallery" data-caption="{{ img.id }}">
+                    <img src="{% static '/photo/' %}{{ img.icon }}" alt="摄于 {{ img.place }}">
+                </a>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'others/js/http_cdnjs.cloudflare.com_ajax_libs_jquery_3.6.0_jquery.js' %}"></script>
+    <script src="{% static 'others/js/http_cdnjs.cloudflare.com_ajax_libs_justifiedGallery_3.8.1_js_jquery.justifiedGallery.js' %}"></script>
+    <script src="{% static 'others/js/http_cdnjs.cloudflare.com_ajax_libs_fancybox_3.5.7_jquery.fancybox.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myGallery").justifiedGallery({
+                rowHeight: 300,
+                margins: 5,
+                lastRow: 'center',
+            });
+        });
+        Fancybox.bind("[data-fancybox]", {
+            hideScrollbar: false,
+            // Your custom options
+        });
+    </script>
+{% endblock %}
